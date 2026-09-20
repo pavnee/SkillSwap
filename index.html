@@ -1,0 +1,2170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SkillSwap — Learn. Teach. Exchange.</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --bg:#05060b;
+    --surface:#0b0d16;
+    --surface2:#111420;
+    --text:#f7f7fb;
+    --muted:#8a8fa5;
+    --violet:#8c69ff;
+    --blue:#52bfff;
+    --cyan:#62f4ff;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:
+        radial-gradient(circle at 75% 0%,rgba(102,71,255,.13),transparent 30%),
+        radial-gradient(circle at 10% 20%,rgba(0,194,255,.06),transparent 28%),
+        var(--bg);
+
+    color:var(--text);
+    font-family:"DM Sans",sans-serif;
+    overflow-x:hidden;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+button{
+    font:inherit;
+}
+
+/* NAVIGATION */
+
+.nav{
+    height:76px;
+    width:100%;
+    padding:0 6%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:absolute;
+    top:0;
+    z-index:100;
+}
+
+.logo{
+    font-family:"Manrope";
+    font-size:24px;
+    font-weight:800;
+    letter-spacing:-1px;
+}
+
+.logo span{
+    color:#987cff;
+}
+
+.nav-center{
+    display:flex;
+    gap:34px;
+}
+
+.nav-center a{
+    color:#9297aa;
+    font-size:14px;
+    transition:.3s;
+}
+
+.nav-center a:hover{
+    color:white;
+}
+
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.login{
+    font-size:14px;
+    color:#a9aec0;
+}
+
+.signup{
+    padding:11px 18px;
+    border-radius:100px;
+    background:white;
+    color:#090a10;
+    font-weight:600;
+    font-size:13px;
+}
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+    position:relative;
+    display:grid;
+    grid-template-columns:.9fr 1.1fr;
+    align-items:center;
+    padding:120px 6% 70px;
+    overflow:hidden;
+}
+
+.hero-copy{
+    position:relative;
+    z-index:5;
+}
+
+.hero-label{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+
+    border:1px solid rgba(255,255,255,.09);
+    background:rgba(255,255,255,.035);
+
+    padding:8px 13px;
+    border-radius:50px;
+
+    font-size:11px;
+    color:#a8adc2;
+    letter-spacing:1.4px;
+    text-transform:uppercase;
+
+    margin-bottom:27px;
+}
+
+.hero-label-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#9f87ff;
+    box-shadow:0 0 15px #8e70ff;
+}
+
+.hero h1{
+    font-family:"Manrope";
+    font-size:clamp(58px,5.8vw,94px);
+    line-height:.94;
+    letter-spacing:-5px;
+    font-weight:700;
+}
+
+.hero h1 span{
+    background:linear-gradient(90deg,#a891ff,#78a8ff,#67efff);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.hero-description{
+    max-width:510px;
+    color:#858a9e;
+    line-height:1.8;
+    font-size:15px;
+    margin-top:30px;
+}
+
+.hero-actions{
+    display:flex;
+    gap:13px;
+    margin-top:33px;
+}
+
+.btn-primary{
+    border:none;
+    padding:15px 23px;
+    border-radius:11px;
+    color:white;
+    cursor:pointer;
+    font-weight:600;
+    font-size:14px;
+
+    background:
+        linear-gradient(105deg,#7757ff,#558eff);
+
+    box-shadow:
+        0 10px 40px rgba(100,76,255,.25);
+
+    transition:.3s;
+}
+
+.btn-primary:hover{
+    transform:translateY(-3px);
+    box-shadow:0 18px 50px rgba(100,76,255,.38);
+}
+
+.btn-secondary{
+    border:1px solid rgba(255,255,255,.12);
+    padding:15px 23px;
+    border-radius:11px;
+    color:#c6c9d6;
+    background:rgba(255,255,255,.03);
+    cursor:pointer;
+    transition:.3s;
+}
+
+.btn-secondary:hover{
+    background:rgba(255,255,255,.075);
+    border-color:rgba(255,255,255,.25);
+}
+
+/* HERO ART */
+
+.hero-art{
+    height:650px;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.glow{
+    width:480px;
+    height:480px;
+    border-radius:50%;
+    position:absolute;
+
+    background:
+        radial-gradient(circle,
+        rgba(112,91,255,.22) 0%,
+        rgba(63,89,255,.08) 38%,
+        transparent 70%);
+
+    filter:blur(8px);
+}
+
+.hero-art svg{
+    position:relative;
+    width:100%;
+    max-width:770px;
+    overflow:visible;
+    filter:drop-shadow(0 30px 50px rgba(0,0,0,.55));
+}
+
+/* floating cards */
+
+.float-card{
+    position:absolute;
+    z-index:10;
+
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:16px;
+
+    background:rgba(10,12,22,.68);
+    backdrop-filter:blur(18px);
+
+    box-shadow:0 20px 60px rgba(0,0,0,.35);
+
+    padding:14px 16px;
+}
+
+.match-card{
+    top:15%;
+    right:2%;
+    animation:float 4s ease-in-out infinite;
+}
+
+.skill-card{
+    bottom:17%;
+    left:2%;
+    animation:float 4.4s ease-in-out infinite reverse;
+}
+
+.float-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.float-icon{
+    width:37px;
+    height:37px;
+    border-radius:11px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+        linear-gradient(135deg,#7758ff,#58c5ff);
+
+    font-size:15px;
+    font-weight:bold;
+}
+
+.float-title{
+    font-size:12px;
+    font-weight:600;
+}
+
+.float-small{
+    color:#70768e;
+    font-size:10px;
+    margin-top:3px;
+}
+
+@keyframes float{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-13px)}
+}
+
+/* TRUST */
+
+.trust{
+    padding:10px 6% 90px;
+}
+
+.trust-inner{
+    border-top:1px solid rgba(255,255,255,.06);
+    border-bottom:1px solid rgba(255,255,255,.06);
+
+    padding:27px 0;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.trust-label{
+    color:#666b80;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:1.4px;
+}
+
+.trust-list{
+    display:flex;
+    gap:45px;
+    color:#7c8197;
+    font-size:13px;
+}
+
+/* GENERAL */
+
+.section{
+    padding:120px 6%;
+}
+
+.eyebrow{
+    color:#9178ff;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:1.8px;
+    text-transform:uppercase;
+    margin-bottom:17px;
+}
+
+.section-title{
+    font-family:"Manrope";
+    font-size:clamp(40px,4.3vw,67px);
+    line-height:1.03;
+    letter-spacing:-3px;
+    max-width:700px;
+}
+
+.section-description{
+    max-width:520px;
+    color:#808599;
+    line-height:1.8;
+    margin-top:20px;
+    font-size:14px;
+}
+
+/* FEATURE CARDS */
+
+.features{
+    display:grid;
+    grid-template-columns:1.2fr .8fr .8fr;
+    gap:16px;
+    margin-top:55px;
+}
+
+.feature{
+    border:1px solid rgba(255,255,255,.075);
+    background:
+        linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.012));
+
+    border-radius:22px;
+    min-height:350px;
+
+    padding:27px;
+    position:relative;
+    overflow:hidden;
+
+    transition:.4s;
+}
+
+.feature:hover{
+    transform:translateY(-7px);
+    border-color:rgba(139,108,255,.3);
+}
+
+.feature-large{
+    min-height:420px;
+}
+
+.feature-icon{
+    width:45px;
+    height:45px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:13px;
+
+    border:1px solid rgba(137,111,255,.22);
+    background:rgba(137,111,255,.11);
+
+    color:#a995ff;
+    font-size:18px;
+}
+
+.feature h3{
+    font-family:"Manrope";
+    font-size:21px;
+    margin-top:26px;
+}
+
+.feature p{
+    color:#777c91;
+    line-height:1.75;
+    font-size:13px;
+    margin-top:12px;
+    max-width:370px;
+}
+
+.feature-graphic{
+    position:absolute;
+    left:25px;
+    right:25px;
+    bottom:25px;
+    height:130px;
+
+    border-radius:15px;
+
+    border:1px solid rgba(255,255,255,.07);
+
+    background:
+        radial-gradient(circle at 50% 50%,rgba(113,94,255,.22),transparent 30%),
+        #0b0d16;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.person-circle{
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.12);
+    background:#15182a;
+}
+
+.connect-line{
+    width:100px;
+    height:1px;
+    margin:0 13px;
+
+    background:
+        linear-gradient(90deg,#5e70ff,#65ebff);
+
+    box-shadow:0 0 15px #6b6cff;
+}
+
+/* HOW IT WORKS */
+
+.how-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:85px;
+    align-items:center;
+}
+
+.dashboard{
+    min-height:520px;
+    border-radius:25px;
+    border:1px solid rgba(255,255,255,.075);
+
+    background:
+        linear-gradient(145deg,#0d101b,#080910);
+
+    padding:22px;
+
+    box-shadow:0 50px 80px rgba(0,0,0,.3);
+}
+
+.dashboard-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid rgba(255,255,255,.06);
+    padding-bottom:18px;
+}
+
+.dash-dots{
+    display:flex;
+    gap:7px;
+}
+
+.dash-dots span{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#303448;
+}
+
+.dashboard-content{
+    padding:24px 5px;
+}
+
+.dashboard-title{
+    font-size:12px;
+    color:#72788e;
+}
+
+.match-profile{
+    margin-top:20px;
+
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:17px;
+    padding:18px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    background:rgba(255,255,255,.02);
+}
+
+.match-user{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.avatar{
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    background:
+        linear-gradient(135deg,#8b6dff,#64cfff);
+}
+
+.match-name{
+    font-size:13px;
+    font-weight:600;
+}
+
+.match-role{
+    color:#70768c;
+    font-size:10px;
+    margin-top:4px;
+}
+
+.match-percent{
+    color:#7de7c6;
+    font-size:12px;
+}
+
+.topic-list{
+    margin-top:22px;
+    display:grid;
+    gap:10px;
+}
+
+.topic{
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:12px;
+    padding:14px;
+
+    display:flex;
+    justify-content:space-between;
+
+    color:#a6aabb;
+    font-size:12px;
+}
+
+.topic span{
+    color:#696f85;
+}
+
+.steps{
+    display:grid;
+    gap:27px;
+    margin-top:45px;
+}
+
+.step{
+    display:flex;
+    gap:18px;
+}
+
+.step-number{
+    min-width:42px;
+    height:42px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:rgba(123,95,255,.1);
+    border:1px solid rgba(123,95,255,.28);
+
+    color:#a590ff;
+    font-size:12px;
+    font-weight:700;
+}
+
+.step h4{
+    font-family:"Manrope";
+    font-size:16px;
+    margin-bottom:6px;
+}
+
+.step p{
+    color:#777c90;
+    font-size:13px;
+    line-height:1.65;
+}
+
+/* TUTOR SECTION */
+
+.tutor-section{
+    padding:120px 6%;
+}
+
+.tutor-panel{
+    min-height:470px;
+    border-radius:28px;
+    padding:65px;
+
+    position:relative;
+    overflow:hidden;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    background:
+        radial-gradient(circle at 85% 35%,rgba(81,194,255,.16),transparent 24%),
+        radial-gradient(circle at 70% 70%,rgba(126,90,255,.16),transparent 30%),
+        linear-gradient(135deg,#101222,#090a11);
+}
+
+.tutor-panel h2{
+    max-width:610px;
+    font-family:"Manrope";
+    font-size:clamp(40px,4.2vw,64px);
+    line-height:1;
+    letter-spacing:-3px;
+}
+
+.tutor-panel p{
+    color:#83889d;
+    max-width:480px;
+    line-height:1.8;
+    margin:22px 0 28px;
+    font-size:14px;
+}
+
+.tutor-orbit{
+    position:absolute;
+    width:450px;
+    height:450px;
+    right:-60px;
+    top:5px;
+    border-radius:50%;
+    border:1px solid rgba(119,99,255,.18);
+}
+
+.tutor-orbit:before,
+.tutor-orbit:after{
+    content:"";
+    position:absolute;
+    border-radius:50%;
+    border:1px solid rgba(102,218,255,.12);
+}
+
+.tutor-orbit:before{
+    inset:65px;
+}
+
+.tutor-orbit:after{
+    inset:130px;
+    background:
+        radial-gradient(circle,#735eff 0%,rgba(99,81,255,.25) 35%,transparent 70%);
+}
+
+/* CTA */
+
+.cta{
+    padding:50px 6% 120px;
+}
+
+.cta-inner{
+    text-align:center;
+    padding:90px 30px;
+    border-radius:28px;
+    border:1px solid rgba(139,108,255,.2);
+
+    background:
+        radial-gradient(circle at 50% 120%,rgba(118,91,255,.25),transparent 45%),
+        #0b0d15;
+}
+
+.cta-inner h2{
+    font-family:"Manrope";
+    font-size:clamp(42px,5vw,72px);
+    letter-spacing:-4px;
+    line-height:.98;
+}
+
+.cta-inner p{
+    color:#82879b;
+    max-width:500px;
+    line-height:1.8;
+    margin:22px auto 30px;
+    font-size:14px;
+}
+
+/* FOOTER */
+
+.footer{
+    margin:0 6%;
+    padding:30px 0;
+    border-top:1px solid rgba(255,255,255,.06);
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    color:#5f6479;
+    font-size:12px;
+}
+
+.footer-links{
+    display:flex;
+    gap:25px;
+}
+
+/* SVG ANIMATIONS */
+
+.energy{
+    stroke-dasharray:8 14;
+    animation:energyMove 1.4s linear infinite;
+}
+
+@keyframes energyMove{
+    to{
+        stroke-dashoffset:-44;
+    }
+}
+
+.brain-node{
+    animation:pulse 2s ease-in-out infinite;
+}
+
+.brain-node:nth-child(2){
+    animation-delay:.3s;
+}
+
+.brain-node:nth-child(3){
+    animation-delay:.7s;
+}
+
+@keyframes pulse{
+    0%,100%{
+        opacity:.45;
+    }
+
+    50%{
+        opacity:1;
+        filter:drop-shadow(0 0 7px #74eaff);
+    }
+}
+
+.center-core{
+    transform-origin:center;
+    animation:corePulse 2.5s ease-in-out infinite;
+}
+
+@keyframes corePulse{
+    0%,100%{
+        opacity:.75;
+        transform:scale(.95);
+    }
+
+    50%{
+        opacity:1;
+        transform:scale(1.08);
+    }
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px){
+
+    .hero{
+        grid-template-columns:1fr;
+        padding-top:140px;
+        text-align:center;
+    }
+
+    .hero-copy{
+        max-width:700px;
+        margin:auto;
+    }
+
+    .hero-description{
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .hero-actions{
+        justify-content:center;
+    }
+
+    .hero-art{
+        height:550px;
+    }
+
+    .features{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .feature:first-child{
+        grid-column:span 2;
+    }
+
+    .how-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:700px){
+
+    .nav-center{
+        display:none;
+    }
+
+    .login{
+        display:none;
+    }
+
+    .hero{
+        padding-left:5%;
+        padding-right:5%;
+    }
+
+    .hero h1{
+        font-size:52px;
+        letter-spacing:-3px;
+    }
+
+    .hero-art{
+        height:420px;
+    }
+
+    .float-card{
+        transform:scale(.8);
+    }
+
+    .match-card{
+        right:-20px;
+    }
+
+    .skill-card{
+        left:-25px;
+    }
+
+    .trust-inner{
+        flex-direction:column;
+        gap:20px;
+    }
+
+    .trust-list{
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:20px;
+    }
+
+    .section{
+        padding:85px 5%;
+    }
+
+    .features{
+        grid-template-columns:1fr;
+    }
+
+    .feature:first-child{
+        grid-column:auto;
+    }
+
+    .feature{
+        min-height:340px;
+    }
+
+    .tutor-section,
+    .cta{
+        padding-left:5%;
+        padding-right:5%;
+    }
+
+    .tutor-panel{
+        padding:45px 28px;
+    }
+
+    .tutor-orbit{
+        opacity:.35;
+    }
+
+    .footer{
+        flex-direction:column;
+        gap:17px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<nav class="nav">
+
+    <a href="#" class="logo">
+        Skill<span>Swap</span>
+    </a>
+
+    <div class="nav-center">
+        <a href="#features">Features</a>
+        <a href="#how">How it works</a>
+        <a href="#tutors">For tutors</a>
+        <a href="#community">Community</a>
+    </div>
+
+    <div class="nav-right">
+        <a href="#" class="login">Log in</a>
+        <a href="#" class="signup">Join SkillSwap</a>
+    </div>
+
+</nav>
+
+
+<section class="hero">
+
+    <div class="hero-copy">
+
+        <div class="hero-label">
+            <span class="hero-label-dot"></span>
+            Human knowledge. Better connected.
+        </div>
+
+        <h1>
+            Skills are better
+            <br>
+            when they're
+            <span>shared.</span>
+        </h1>
+
+        <p class="hero-description">
+
+            Got skills but don't know how to share them?
+            Need skills but don't know who to ask?
+
+            SkillSwap connects learners and tutors through personalized,
+            one-to-one learning experiences built around real goals.
+
+        </p>
+
+        <div class="hero-actions">
+
+            <button class="btn-primary"
+            onclick="scrollToSection('features')">
+                Find your skill →
+            </button>
+
+            <button class="btn-secondary"
+            onclick="scrollToSection('tutors')">
+                Become a tutor
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-art">
+
+        <div class="glow"></div>
+
+
+        <!-- MAIN HUMAN + BRAIN SVG -->
+
+        <svg viewBox="0 0 800 650">
+
+            <defs>
+
+                <linearGradient id="humanLeft"
+                x1="0" y1="0"
+                x2="1" y2="1">
+
+                    <stop offset="0%"
+                    stop-color="#22263b"/>
+
+                    <stop offset="55%"
+                    stop-color="#121521"/>
+
+                    <stop offset="100%"
+                    stop-color="#090b12"/>
+
+                </linearGradient>
+
+
+                <linearGradient id="humanRight"
+                x1="1" y1="0"
+                x2="0" y2="1">
+
+                    <stop offset="0%"
+                    stop-color="#25283f"/>
+
+                    <stop offset="55%"
+                    stop-color="#111420"/>
+
+                    <stop offset="100%"
+                    stop-color="#090b12"/>
+
+                </linearGradient>
+
+
+                <linearGradient id="energyGradient"
+                x1="0"
+                x2="1">
+
+                    <stop offset="0%"
+                    stop-color="#795aff"/>
+
+                    <stop offset="50%"
+                    stop-color="#73e6ff"/>
+
+                    <stop offset="100%"
+                    stop-color="#795aff"/>
+
+                </linearGradient>
+
+
+                <filter id="blurGlow">
+
+                    <feGaussianBlur
+                    stdDeviation="8"
+                    result="blur"/>
+
+                    <feMerge>
+                        <feMergeNode in="blur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+
+                </filter>
+
+            </defs>
+
+
+            <!-- LEFT PERSON -->
+
+            <g>
+
+                <!-- shoulder -->
+
+                <path
+                d="
+                M70 605
+                C105 510 150 477 213 462
+                C255 451 284 432 298 395
+                L330 423
+                C320 481 295 530 250 605
+                Z"
+
+                fill="url(#humanLeft)"
+                stroke="#30344c"
+                stroke-width="2"
+                />
+
+
+                <!-- neck -->
+
+                <path
+                d="
+                M239 455
+                C252 430 257 407 255 380
+                L299 372
+                C294 419 304 450 327 470
+                Z"
+
+                fill="#191c29"
+                />
+
+
+                <!-- head profile -->
+
+                <path
+                d="
+                M178 168
+
+                C187 107
+                230 77
+                282 84
+
+                C335 91
+                362 130
+                361 180
+
+                C360 209
+                347 236
+                324 256
+
+                C342 265
+                351 280
+                347 294
+
+                C343 306
+                330 311
+                316 311
+
+                C325 322
+                324 334
+                316 341
+
+                C321 352
+                316 361
+                306 364
+
+                C304 398
+                286 418
+                257 421
+
+                C218 424
+                188 403
+                173 366
+
+                C160 334
+                157 299
+                162 266
+
+                C151 243
+                155 220
+                174 205
+
+                C171 192
+                173 179
+                178 168
+
+                Z"
+
+                fill="url(#humanLeft)"
+
+                stroke="#343851"
+                stroke-width="2"
+                />
+
+
+                <!-- ear -->
+
+                <ellipse
+                cx="174"
+                cy="267"
+                rx="19"
+                ry="28"
+
+                fill="#171a27"
+
+                stroke="#343851"
+                />
+
+
+                <!-- subtle face detail -->
+
+                <path
+                d="M304 221 Q326 217 337 224"
+                fill="none"
+                stroke="#5b6078"
+                stroke-width="3"
+                stroke-linecap="round"
+                opacity=".55"
+                />
+
+                <path
+                d="M329 282 Q341 286 345 292"
+                fill="none"
+                stroke="#53586e"
+                stroke-width="2"
+                opacity=".45"
+                />
+
+
+                <!-- left brain -->
+
+                <g
+                opacity=".95"
+                filter="url(#blurGlow)">
+
+                    <path
+                    d="
+                    M204 163
+                    C199 137 220 121 242 127
+
+                    C253 109 282 111 291 130
+
+                    C311 125 329 141 324 160
+
+                    C337 171 331 194 314 198
+
+                    C311 216 288 221 275 210
+
+                    C260 222 237 216 234 198
+
+                    C215 199 201 183 207 169
+                    "
+
+                    fill="none"
+
+                    stroke="#846bff"
+                    stroke-width="3"
+                    />
+
+                    <circle
+                    class="brain-node"
+                    cx="230"
+                    cy="150"
+                    r="4"
+                    fill="#83eaff"
+                    />
+
+                    <circle
+                    class="brain-node"
+                    cx="274"
+                    cy="140"
+                    r="4"
+                    fill="#a17dff"
+                    />
+
+                    <circle
+                    class="brain-node"
+                    cx="300"
+                    cy="176"
+                    r="4"
+                    fill="#68dfff"
+                    />
+
+                    <circle
+                    class="brain-node"
+                    cx="258"
+                    cy="190"
+                    r="4"
+                    fill="#9278ff"
+                    />
+
+                    <path
+                    d="
+                    M230 150
+                    L274 140
+                    L300 176
+                    L258 190
+                    L230 150
+                    "
+
+                    stroke="#6eb6ff"
+                    stroke-width="1.5"
+                    opacity=".7"
+                    fill="none"
+                    />
+
+                </g>
+
+            </g>
+
+
+            <!-- RIGHT PERSON -->
+
+            <g>
+
+                <path
+                d="
+                M730 605
+                C695 510 650 477 587 462
+                C545 451 516 432 502 395
+                L470 423
+                C480 481 505 530 550 605
+                Z"
+
+                fill="url(#humanRight)"
+
+                stroke="#30344c"
+                stroke-width="2"
+                />
+
+
+                <path
+                d="
+                M561 455
+                C548 430
+                543 407
+                545 380
+
+                L501 372
+
+                C506 419
+                496 450
+                473 470
+
+                Z"
+
+                fill="#191c29"
+                />
+
+
+                <path
+                d="
+                M622 168
+
+                C613 107
+                570 77
+                518 84
+
+                C465 91
+                438 130
+                439 180
+
+                C440 209
+                453 236
+                476 256
+
+                C458 265
+                449 280
+                453 294
+
+                C457 306
+                470 311
+                484 311
+
+                C475 322
+                476 334
+                484 341
+
+                C479 352
+                484 361
+                494 364
+
+                C496 398
+                514 418
+                543 421
+
+                C582 424
+                612 403
+                627 366
+
+                C640 334
+                643 299
+                638 266
+
+                C649 243
+                645 220
+                626 205
+
+                C629 192
+                627 179
+                622 168
+
+                Z"
+
+                fill="url(#humanRight)"
+
+                stroke="#343851"
+                stroke-width="2"
+                />
+
+
+                <ellipse
+                cx="626"
+                cy="267"
+                rx="19"
+                ry="28"
+
+                fill="#171a27"
+
+                stroke="#343851"
+                />
+
+
+                <path
+                d="M496 221 Q474 217 463 224"
+                fill="none"
+                stroke="#5b6078"
+                stroke-width="3"
+                stroke-linecap="round"
+                opacity=".55"
+                />
+
+                <path
+                d="M471 282 Q459 286 455 292"
+                fill="none"
+                stroke="#53586e"
+                stroke-width="2"
+                opacity=".45"
+                />
+
+
+                <!-- right brain -->
+
+                <g
+                opacity=".95"
+                filter="url(#blurGlow)">
+
+                    <path
+                    d="
+                    M596 163
+                    C601 137 580 121 558 127
+
+                    C547 109 518 111 509 130
+
+                    C489 125 471 141 476 160
+
+                    C463 171 469 194 486 198
+
+                    C489 216 512 221 525 210
+
+                    C540 222 563 216 566 198
+
+                    C585 199 599 183 593 169
+                    "
+
+                    fill="none"
+
+                    stroke="#60d8ff"
+                    stroke-width="3"
+                    />
+
+                    <circle
+                    class="brain-node"
+                    cx="570"
+                    cy="150"
+                    r="4"
+                    fill="#83eaff"
+                    />
+
+                    <circle
+                    class="brain-node"
+                    cx="526"
+                    cy="140"
+                    r="4"
+                    fill="#a17dff"
+                    />
+
+                    <circle
+                    class="brain-node"
+                    cx="500"
+                    cy="176"
+                    r="4"
+                    fill="#68dfff"
+                    />
+
+                    <circle
+                    class="brain-node"
+                    cx="542"
+                    cy="190"
+                    r="4"
+                    fill="#9278ff"
+                    />
+
+                    <path
+                    d="
+                    M570 150
+                    L526 140
+                    L500 176
+                    L542 190
+                    L570 150
+                    "
+
+                    stroke="#6eb6ff"
+                    stroke-width="1.5"
+                    opacity=".7"
+                    fill="none"
+                    />
+
+                </g>
+
+            </g>
+
+
+            <!-- CENTRAL KNOWLEDGE EXCHANGE -->
+
+            <g
+            filter="url(#blurGlow)">
+
+                <path
+                class="energy"
+
+                d="
+                M300 167
+                C345 120 367 131 400 168
+                C433 131 455 120 500 167
+                "
+
+                fill="none"
+
+                stroke="url(#energyGradient)"
+
+                stroke-width="3"
+                stroke-linecap="round"
+                />
+
+
+                <path
+                class="energy"
+
+                d="
+                M305 190
+                C340 220 365 216 400 185
+                C435 216 460 220 495 190
+                "
+
+                fill="none"
+
+                stroke="url(#energyGradient)"
+
+                stroke-width="2"
+                stroke-linecap="round"
+                opacity=".7"
+                />
+
+
+                <circle
+                class="center-core"
+
+                cx="400"
+                cy="177"
+                r="14"
+
+                fill="#846dff"
+                opacity=".8"
+                />
+
+                <circle
+                cx="400"
+                cy="177"
+                r="28"
+
+                fill="none"
+
+                stroke="#76ddff"
+
+                stroke-width="1"
+
+                opacity=".35"
+                />
+
+                <circle
+                cx="400"
+                cy="177"
+                r="49"
+
+                fill="none"
+
+                stroke="#846dff"
+
+                stroke-width="1"
+
+                opacity=".15"
+                />
+
+            </g>
+
+
+            <!-- LIGHT PARTICLES -->
+
+            <circle cx="362" cy="116" r="3" fill="#66dcff"/>
+            <circle cx="448" cy="132" r="2" fill="#9f88ff"/>
+            <circle cx="385" cy="222" r="2" fill="#6ee7ff"/>
+            <circle cx="425" cy="238" r="3" fill="#8870ff"/>
+            <circle cx="333" cy="198" r="2" fill="#726cff"/>
+            <circle cx="470" cy="206" r="2" fill="#74eaff"/>
+
+        </svg>
+
+
+        <div class="float-card match-card">
+
+            <div class="float-row">
+
+                <div class="float-icon">
+                    AI
+                </div>
+
+                <div>
+
+                    <div class="float-title">
+                        Smart Match Found
+                    </div>
+
+                    <div class="float-small">
+                        96% learning compatibility
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="float-card skill-card">
+
+            <div class="float-row">
+
+                <div class="float-icon">
+                    ↗
+                </div>
+
+                <div>
+
+                    <div class="float-title">
+                        Python ↔ UI Design
+                    </div>
+
+                    <div class="float-small">
+                        Knowledge exchange active
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="trust">
+
+    <div class="trust-inner">
+
+        <div class="trust-label">
+            One platform. Infinite possibilities.
+        </div>
+
+        <div class="trust-list">
+
+            <span>Programming</span>
+            <span>Design</span>
+            <span>AI & ML</span>
+            <span>Languages</span>
+            <span>Music</span>
+            <span>Business</span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section" id="features">
+
+    <div class="eyebrow">
+        Designed around people
+    </div>
+
+    <h2 class="section-title">
+        Not another course library.
+    </h2>
+
+    <p class="section-description">
+        SkillSwap brings real people into the learning process —
+        combining personalized guidance, skill matching and flexible teaching.
+    </p>
+
+
+    <div class="features">
+
+        <div class="feature feature-large">
+
+            <div class="feature-icon">
+                ✦
+            </div>
+
+            <h3>
+                AI-powered skill matching
+            </h3>
+
+            <p>
+                Match with people based on what you want to learn,
+                what you can teach, your experience level and your goals.
+            </p>
+
+            <div class="feature-graphic">
+
+                <div class="person-circle"></div>
+
+                <div class="connect-line"></div>
+
+                <div class="person-circle"></div>
+
+            </div>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                1:1
+            </div>
+
+            <h3>
+                Personal learning
+            </h3>
+
+            <p>
+                Learn directly from someone who can adapt their teaching
+                to your pace, questions and learning style.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                ↗
+            </div>
+
+            <h3>
+                Teach and earn
+            </h3>
+
+            <p>
+                Conduct private sessions, create courses and turn
+                skills you already have into an earning opportunity.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                ◈
+            </div>
+
+            <h3>
+                Share resources
+            </h3>
+
+            <p>
+                Upload personal notes, videos, worksheets and study material
+                directly for your learners.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                ◎
+            </div>
+
+            <h3>
+                Custom learning plans
+            </h3>
+
+            <p>
+                Tutors can build structured learning paths based on
+                each learner's specific objective.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section" id="how">
+
+    <div class="how-grid">
+
+
+        <div class="dashboard">
+
+            <div class="dashboard-top">
+
+                <div class="logo" style="font-size:17px">
+                    Skill<span>Swap</span>
+                </div>
+
+                <div class="dash-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-content">
+
+                <div class="dashboard-title">
+                    YOUR BEST MATCHES
+                </div>
+
+
+                <div class="match-profile">
+
+                    <div class="match-user">
+
+                        <div class="avatar"></div>
+
+                        <div>
+
+                            <div class="match-name">
+                                Aarav Mehta
+                            </div>
+
+                            <div class="match-role">
+                                Python & Machine Learning Tutor
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="match-percent">
+                        96% Match
+                    </div>
+
+                </div>
+
+
+                <div class="match-profile">
+
+                    <div class="match-user">
+
+                        <div class="avatar"
+                        style="
+                        background:linear-gradient(135deg,#ff8d70,#846cff)">
+                        </div>
+
+                        <div>
+
+                            <div class="match-name">
+                                Rohan Kapoor
+                            </div>
+
+                            <div class="match-role">
+                                UI/UX & Figma Mentor
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="match-percent">
+                        91% Match
+                    </div>
+
+                </div>
+
+
+                <div class="topic-list">
+
+                    <div class="topic">
+                        Python fundamentals
+                        <span>Beginner</span>
+                    </div>
+
+                    <div class="topic">
+                        Machine learning
+                        <span>Intermediate</span>
+                    </div>
+
+                    <div class="topic">
+                        UI/UX Design
+                        <span>Beginner</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div>
+
+            <div class="eyebrow">
+                How SkillSwap works
+            </div>
+
+            <h2 class="section-title">
+                Find the right person.
+                Learn the right way.
+            </h2>
+
+
+            <div class="steps">
+
+                <div class="step">
+
+                    <div class="step-number">
+                        01
+                    </div>
+
+                    <div>
+
+                        <h4>
+                            Tell us what you know
+                        </h4>
+
+                        <p>
+                            Build your profile by selecting your existing skills,
+                            interests and experience.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        02
+                    </div>
+
+                    <div>
+
+                        <h4>
+                            Tell us what you want to learn
+                        </h4>
+
+                        <p>
+                            Choose your learning goals, preferred level,
+                            format and availability.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        03
+                    </div>
+
+                    <div>
+
+                        <h4>
+                            Meet your best matches
+                        </h4>
+
+                        <p>
+                            SkillSwap recommends compatible tutors and learners
+                            based on shared needs.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        04
+                    </div>
+
+                    <div>
+
+                        <h4>
+                            Start exchanging knowledge
+                        </h4>
+
+                        <p>
+                            Learn one-to-one, access study material,
+                            join a course or teach your own.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="tutor-section" id="tutors">
+
+    <div class="tutor-panel">
+
+        <div class="eyebrow">
+            Become a tutor
+        </div>
+
+        <h2>
+            Your skills already
+            have value.
+        </h2>
+
+        <p>
+            Teach from home, upload lessons, share your own material,
+            conduct one-to-one sessions and charge for your expertise.
+        </p>
+
+        <button class="btn-primary"
+        onclick="showTutorMessage()">
+
+            Start teaching →
+
+        </button>
+
+        <div class="tutor-orbit"></div>
+
+    </div>
+
+</section>
+
+
+<section class="cta" id="community">
+
+    <div class="cta-inner">
+
+        <div class="eyebrow">
+            The learning network
+        </div>
+
+        <h2>
+            Everyone knows
+            something worth sharing.
+        </h2>
+
+        <p>
+            Learn what you need.
+            Teach what you know.
+            Build meaningful connections through knowledge.
+        </p>
+
+        <button
+        class="btn-primary"
+        onclick="showJoinMessage()">
+
+            Join SkillSwap →
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<footer class="footer">
+
+    <div>
+        © 2026 SkillSwap
+    </div>
+
+    <div class="footer-links">
+
+        <a href="#">About</a>
+        <a href="#">Privacy</a>
+        <a href="#">Contact</a>
+
+    </div>
+
+</footer>
+
+
+<script>
+
+function scrollToSection(id){
+
+    document
+    .getElementById(id)
+    .scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+function showTutorMessage(){
+
+    alert(
+        "Tutor registration page will open here."
+    );
+
+}
+
+
+function showJoinMessage(){
+
+    alert(
+        "SkillSwap registration page will open here."
+    );
+
+}
+
+
+/* subtle mouse movement on hero art */
+
+const heroArt =
+document.querySelector(".hero-art svg");
+
+document.addEventListener(
+"mousemove",
+function(event){
+
+    const x =
+    (event.clientX /
+    window.innerWidth - .5) * 10;
+
+    const y =
+    (event.clientY /
+    window.innerHeight - .5) * 7;
+
+    heroArt.style.transform =
+    `translate(${x}px,${y}px)`;
+
+});
+
+</script>
+
+
+</body>
+</html>
